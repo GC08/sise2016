@@ -16,7 +16,7 @@ public class CinemaParserApplication {
 
         Document htmlDoc = Jsoup.connect("http://www.filmweb.pl/film/%C5%BBo%C5%82nierze+kosmosu+II-2004-109485").get();
         Elements elements = htmlDoc.select("body");
-        Element element = elements.select("filmPlot text").first();
-        System.out.println(element.toString());
+        Element element = elements.select(".filmPlot .text").first();
+        System.out.println(element.text());
     }
 }
