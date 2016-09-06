@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,10 +46,10 @@ public class EntityManager {
         return conn;
     }
 
-    private ResultSet getResult() {
+    private ResultSet getQueryResult(String query) {
         try {
             Statement st = this.conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id, subject, permalink FROM blogs ORDER BY id");
+            ResultSet rs = st.executeQuery(query);
 
 //            while (rs.next()) {
 //                Blog blog = new Blog();
@@ -66,5 +67,13 @@ public class EntityManager {
         }
         
         return null;
+    }
+
+    List<Entity> getFromQuery(String with) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void executeQuery(String create) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

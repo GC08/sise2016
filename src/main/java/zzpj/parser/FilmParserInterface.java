@@ -1,5 +1,8 @@
 package zzpj.parser;
 
-public interface FilmInterface {
-    Film getFilm();
+import zzpj.entities.FilmEntity;
+
+public interface FilmParserInterface {
+
+    FilmEntity getFilm();
 }
