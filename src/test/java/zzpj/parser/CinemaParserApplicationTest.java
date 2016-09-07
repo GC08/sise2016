@@ -1,10 +1,27 @@
 package zzpj.parser;
 
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
 
-@RunWith(MockitoJUnitRunner.class)
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import zzpj.entities.FilmEntity;
+
 public class CinemaParserApplicationTest {
 
-    /* deklaracja mocków */
+	@Test
+	public void test1() {
+		
+		FilmEntity filmEntity = new FilmEntity();
+		FilmEntity spy = spy(filmEntity);
+		
+		FilmParserInterface filmParserInterface=Mockito.mock(FilmParserInterface.class);
+		
+        when(filmParserInterface.getFilm()).thenReturn(spy);
+
+        assertEquals(filmParserInterface.getFilm(), spy);
+		
+	}
+
 }
