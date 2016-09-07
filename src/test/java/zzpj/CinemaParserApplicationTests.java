@@ -1,16 +1,26 @@
 package zzpj;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+import org.junit.Rule;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+
 public class CinemaParserApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Mock
+    CinemaParserApplication cinemaParserApplicationTests; 
 
+    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule(); 
+
+    @Test
+    public void testQuery()  {
+    	CinemaParserApplication t  = new CinemaParserApplication(); 
+            boolean check = t.equals(isNotNull());
+            assertTrue(check); 
+            verify(t).equals(isNotNull()); 
+    }
 }
