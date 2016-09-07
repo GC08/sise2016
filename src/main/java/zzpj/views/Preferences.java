@@ -1,4 +1,4 @@
-package views;
+package zzpj.views;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

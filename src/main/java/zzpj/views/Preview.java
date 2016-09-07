@@ -1,4 +1,4 @@
-package views;
+package zzpj.views;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -12,7 +12,7 @@ public class Preview extends JPanel {
 	public Preview() {
 		setLayout(null);
 		
-		JLabel lblKino = new JLabel("KINO - szczegó³y filmu");
+		JLabel lblKino = new JLabel("KINO - szczegï¿½y filmu");
 		lblKino.setBounds(145, 13, 179, 16);
 		add(lblKino);
 		
