@@ -10,26 +10,30 @@ import zzpj.entities.FilmEntity;
 
 public class FilmwebFilmParser implements FilmParserInterface {
 
-    private FilmEntity film;
+    private final String title;
+    private final String description;
 
     public FilmwebFilmParser(String url) throws IOException {
         Document htmlDoc = Jsoup.connect(url).get();
         Elements elements = htmlDoc.select("body");
-        Element title = elements.select(".filmTitle").first();
+        Element titleElement = elements.select(".filmTitle").first();
+        Element descriptionElement = elements.select(".filmPlot .text").first();
+        this.title = titleElement.text();
+        this.description = descriptionElement.text();
 
-        film = getByTitleIfExists(title.toString());
-
-        if (film == null) {
-            film = new FilmEntity();
-            film.setTitle(title.text());
-            Element description = elements.select(".filmPlot .text").first();
-            film.setDescription(description.text());
-        }
     }
 
     @Override
     public FilmEntity getFilm() {
-        return this.film;
+        FilmEntity film = getByTitleIfExists(title.toString());
+
+        if (film == null) {
+            film = new FilmEntity();
+            film.setTitle(this.title);
+            film.setDescription(this.description);
+        }
+        
+        return film;
     }
 
     private FilmEntity getByTitleIfExists(String title) {

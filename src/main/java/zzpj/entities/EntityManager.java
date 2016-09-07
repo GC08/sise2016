@@ -69,7 +69,7 @@ public class EntityManager {
         return null;
     }
 
-    List<Entity> getFromQuery(String with) {
+    ResultSet getFromQuery(String with) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
