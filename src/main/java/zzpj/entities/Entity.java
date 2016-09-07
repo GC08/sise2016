@@ -59,7 +59,7 @@ public abstract class Entity implements EntityInterface {
         return select + from + where + ";";
     }
 
-    private String getAllQuery() {
+    String getAllQuery() {
         String select = "SELECT * ";
         String from = " FROM " + this.getTableName();
 
