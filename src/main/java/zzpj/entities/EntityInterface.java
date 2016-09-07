@@ -1,5 +1,6 @@
 package zzpj.entities;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,9 +10,9 @@ public interface EntityInterface {
 
     String create();
 
-    String getWith(HashMap columns);
-
     String getAll();
     
-    ArrayList<Entity> readDataFromResult(HashMap result);
+    ArrayList<Entity> readDataFromResult(ResultSet result);
+    
+    String getTableName();
 }

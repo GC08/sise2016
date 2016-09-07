@@ -1,5 +1,6 @@
 package zzpj.entities;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,17 +23,33 @@ public abstract class Entity implements EntityInterface {
     private void updateRow() {
         Em().executeQuery(this.update());
     }
-    
-    public static Entity findOneByEntityAndColumns(Entity entity, HashMap columns){
+
+    public static Entity findOneByEntityAndColumns(Entity entity, HashMap columns) {
         return findByEntityAndColumns(entity, columns).get(0);
     }
 
-    public static  ArrayList<Entity> findByEntityAndColumns(Entity entity, HashMap columns){
-        HashMap result = (HashMap) Em().getFromQuery(entity.getWith(columns));
+    public static ArrayList<Entity> findByEntityAndColumns(Entity entity, HashMap columns) {
+        ResultSet result = Em().getFromQuery(entity.getWithQuery(columns));
+
         return entity.readDataFromResult(result);
     }
-    
-    private static EntityManager Em(){
+
+    private static EntityManager Em() {
         return new EntityManager();
+    }
+
+    protected String getWithQuery(HashMap columns) {
+        String select = "SELECT ";
+        String where = " WHERE ";
+        String from = " FROM " + this.getTableName();
+
+        for (Object key : columns.keySet()) {
+            String columnName = (String) key;
+            String value = (String) columns.get(key);
+            select += columnName;
+            where += columnName + " = " + value + " ";
+        }
+
+        return select + from + where + ";";
     }
 }

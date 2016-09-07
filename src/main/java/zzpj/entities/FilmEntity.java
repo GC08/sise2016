@@ -1,8 +1,8 @@
 package zzpj.entities;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class FilmEntity extends Entity {
 
@@ -50,13 +50,13 @@ public class FilmEntity extends Entity {
     }
 
     @Override
-    public String getWith(HashMap columns) {
+    public ArrayList<Entity> readDataFromResult(ResultSet result) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Entity> readDataFromResult(HashMap result) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getTableName() {
+        return "film";
     }
 
 }
