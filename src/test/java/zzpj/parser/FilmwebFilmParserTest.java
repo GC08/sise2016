@@ -16,11 +16,13 @@ public class FilmwebFilmParserTest {
 		FilmEntity filmEntity = new FilmEntity();
 		FilmEntity spy = spy(filmEntity);
 		
-		FilmParserInterface filmParserInterface=Mockito.mock(FilmParserInterface.class);
+		String title = "Inside Out";
 		
-        when(filmParserInterface.getFilm()).thenReturn(spy);
+		FilmwebFilmParser filmwebFilmParser=Mockito.mock(FilmwebFilmParser.class);
+		
+        when(filmwebFilmParser.getFilmByTitleIfExists(title)).thenReturn(spy);
 
-        assertEquals(filmParserInterface.getFilm(), spy);
+        assertEquals(filmwebFilmParser.getFilmByTitleIfExists(title), spy);
 		
 	}
 	
@@ -30,11 +32,11 @@ public class FilmwebFilmParserTest {
 		FilmEntity filmEntity = new FilmEntity();
 		FilmEntity spy = spy(filmEntity);
 		
-		Film filmParserInterface=Mockito.mock(FilmParserInterface.class);
+		FilmwebFilmParser filmwebFilmParser=Mockito.mock(FilmwebFilmParser.class);
 		
-        when(filmParserInterface.getFilm()).thenReturn(spy);
+        when(filmwebFilmParser.getFilm()).thenReturn(spy);
 
-        assertEquals(filmParserInterface.getFilm(), spy);
+        assertEquals(filmwebFilmParser.getFilm(), spy);
 		
 	}
 

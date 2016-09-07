@@ -32,7 +32,7 @@ public class FilmwebFilmParser extends Parser implements FilmParserInterface {
         return film;
     }
 
-    private FilmEntity getFilmByTitleIfExists(String title) {
+    FilmEntity getFilmByTitleIfExists(String title) {
         HashMap columns = new HashMap();
         columns.put("title", title);
 
