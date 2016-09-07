@@ -34,6 +34,12 @@ public abstract class Entity implements EntityInterface {
         return entity.readDataFromResult(result);
     }
 
+    public static ArrayList<Entity> findByEntityAndColumns(Entity entity) {
+        ResultSet result = Em().getFromQuery(entity.getAllQuery());
+
+        return entity.readDataFromResult(result);
+    }
+
     private static EntityManager Em() {
         return new EntityManager();
     }
@@ -51,5 +57,12 @@ public abstract class Entity implements EntityInterface {
         }
 
         return select + from + where + ";";
+    }
+
+    private String getAllQuery() {
+        String select = "SELECT * ";
+        String from = " FROM " + this.getTableName();
+
+        return select + from + ";";
     }
 }
