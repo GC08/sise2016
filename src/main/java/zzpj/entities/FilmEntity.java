@@ -1,8 +1,11 @@
 package zzpj.entities;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FilmEntity extends Entity {
 
@@ -36,22 +39,55 @@ public class FilmEntity extends Entity {
 
     @Override
     public String update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String setUpdate = "UPDATE " + this.getTableName() + " SET " + "title = " + this.title;
+
+        if (this.description != null) {
+            setUpdate += " description = " + this.description;
+        }
+
+        setUpdate += " WHERE id = " + this.id + " ;";
+
+        return setUpdate;
     }
 
     @Override
     public String create() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String insert = "INSERT INTO " + this.getTableName();
+        String columns = " (title";
+        String values = "VALUES (" + this.title;
+
+        if (this.description != null) {
+            columns += ", description;";
+            values += ", " + this.description;
+        }
+
+        columns += ") ";
+        values += ");";
+
+        return insert + columns + values;
     }
 
     @Override
-    public String getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public ArrayList readDataFromResult(ResultSet result) {
+        ArrayList<FilmEntity> films = new ArrayList<>();
 
-    @Override
-    public ArrayList<Entity> readDataFromResult(ResultSet result) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            while (result.next()) {
+                FilmEntity film = new FilmEntity();
+                film.setId(result.getInt("id"));
+                film.setTitle(result.getString("title"));
+
+                if (result.getString("description") != null) {
+                    film.setDescription(result.getString("description"));
+                }
+
+                films.add(film);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmEntity.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return films;
     }
 
     @Override
