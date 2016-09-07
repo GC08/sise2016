@@ -2,9 +2,9 @@ package zzpj.parser;
 
 import java.io.IOException;
 
-public class CinemaCityRepositoryParser extends RepertoireParser {
+public class CinemaCityRepertoireParser extends RepertoireParser {
 
-    public CinemaCityRepositoryParser(String url) throws IOException {
+    public CinemaCityRepertoireParser(String url) throws IOException {
         super("https://www.cinema-city.pl/Manufaktura");
     }
 
