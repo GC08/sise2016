@@ -20,8 +20,8 @@ public class EntityManager {
 
         try {
             Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://THE_HOST/THE_DATABASE";
-            connection = DriverManager.getConnection(url, "THE_USER", "THE_PASSWORD");
+            String url = "jdbc:postgresql://localhost:5432/cinema";
+            connection = DriverManager.getConnection(url, "zzpj", "zzpj");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.exit(1);
