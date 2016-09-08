@@ -28,7 +28,7 @@ public abstract class Entity implements EntityInterface {
         if (findByEntityAndColumns(entity, columns).size() > 0) {
             return findByEntityAndColumns(entity, columns).get(0);
         }
-        
+
         return null;
     }
 
@@ -38,25 +38,19 @@ public abstract class Entity implements EntityInterface {
         return entity.readDataFromResult(result);
     }
 
-    public static ArrayList<Entity> findByEntityAndColumns(Entity entity) {
-        ResultSet result = Em().getFromQuery(entity.getAllQuery());
-
-        return entity.readDataFromResult(result);
-    }
-
     private static EntityManager Em() {
         return new EntityManager();
     }
 
     protected String getWithQuery(HashMap columns) {
-        String select = "SELECT ";
+        String select = "SELECT * ";
         String where = " WHERE ";
         String from = " FROM " + this.getTableName();
 
         for (Object key : columns.keySet()) {
             String columnName = (String) key;
             String value = (String) columns.get(key);
-            select += columnName;
+            //select += "," + columnName;
             where += columnName + " = '" + value + "' ";
         }
 

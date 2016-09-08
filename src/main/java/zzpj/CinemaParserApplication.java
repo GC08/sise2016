@@ -1,8 +1,10 @@
 package zzpj;
 
 import java.io.IOException;
+import java.util.HashMap;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import zzpj.entities.Entity;
 import zzpj.entities.FilmEntity;
 import zzpj.parser.CinemaCityRepertoireParser;
 import zzpj.parser.FilmwebFilmParser;
@@ -19,5 +21,11 @@ public class CinemaParserApplication {
         FilmEntity film = filmParser.getFilm();
         System.out.println(film.getTitle());
         System.out.println(film.getDescription());
+        
+        HashMap columns = new HashMap();
+        columns.put("title", "test");
+        FilmEntity film2 = (FilmEntity) Entity.findOneByEntityAndColumns(new FilmEntity(),columns);
+        System.out.println(film2.getTitle());
+        System.out.println(film2.getDescription());
     }
 }
