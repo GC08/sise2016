@@ -7,7 +7,7 @@ import org.jsoup.select.Elements;
 
 abstract public class RepertoireParser extends Parser {
 
-    protected ArrayList<String> filmTitles;
+    protected ArrayList<String> filmTitles = new ArrayList<>();
 
     /**
      *

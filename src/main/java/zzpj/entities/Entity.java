@@ -25,7 +25,11 @@ public abstract class Entity implements EntityInterface {
     }
 
     public static Entity findOneByEntityAndColumns(Entity entity, HashMap columns) {
-        return findByEntityAndColumns(entity, columns).get(0);
+        if (findByEntityAndColumns(entity, columns).size() > 0) {
+            return findByEntityAndColumns(entity, columns).get(0);
+        }
+        
+        return null;
     }
 
     public static ArrayList<Entity> findByEntityAndColumns(Entity entity, HashMap columns) {
@@ -53,7 +57,7 @@ public abstract class Entity implements EntityInterface {
             String columnName = (String) key;
             String value = (String) columns.get(key);
             select += columnName;
-            where += columnName + " = " + value + " ";
+            where += columnName + " = '" + value + "' ";
         }
 
         return select + from + where + ";";

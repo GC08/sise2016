@@ -37,8 +37,8 @@ public class EntityManager {
         try {
             Statement st = this.conn.createStatement();
             ResultSet rs = st.executeQuery(query);
-            rs.close();
-            st.close();
+            //rs.close();
+            //st.close();
 
             return rs;
         } catch (SQLException se) {

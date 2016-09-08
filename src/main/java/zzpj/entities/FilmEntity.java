@@ -38,10 +38,10 @@ public class FilmEntity extends Entity {
 
     @Override
     public String update() {
-        String setUpdate = "UPDATE " + this.getTableName() + " SET " + "title = " + this.title;
+        String setUpdate = "UPDATE " + this.getTableName() + " SET " + "title = '" + this.title + "'";
 
         if (this.description != null) {
-            setUpdate += " description = " + this.description;
+            setUpdate += " description = '" + this.description + "'";
         }
 
         setUpdate += " WHERE id = " + this.id + " ;";

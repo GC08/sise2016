@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class CinemaCityRepertoireParser extends RepertoireParser {
 
-    public CinemaCityRepertoireParser(String url) throws IOException {
+    public CinemaCityRepertoireParser() throws IOException {
         super("https://www.cinema-city.pl/Manufaktura");
     }
 
